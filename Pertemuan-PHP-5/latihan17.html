@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Kalkulator</title>
+    <script>
+        // Fungsi void untuk mencetak nama dan asal
+        function cetakNama() {
+            console.log("---------------------");
+            console.log("| Indah Permatasari |");
+            console.log("|      Jakaarta     |");
+            console.log("---------------------");
+        }
+
+        // Fungsi untuk melakukan operasi matematika
+        function kalkulasi(nilai1 = 0, nilai2 = 0, operasi = "+") {
+            let hasil;
+            switch(operasi) {
+                case '+':
+                    hasil = nilai1 + nilai2;
+                    console.log(`Hasil Penjumlahan ${nilai1} + ${nilai2} adalah ${hasil}`);
+                    break;
+                case '-':
+                    hasil = nilai1 - nilai2;
+                    console.log(`Hasil Pengurangan ${nilai1} - ${nilai2} adalah ${hasil}`);
+                    break;
+                case '*':
+                    hasil = nilai1 * nilai2;
+                    console.log(`Hasil Perkalian ${nilai1} * ${nilai2} adalah ${hasil}`);
+                    break;
+                case '/':
+                    if (nilai2 !== 0) {
+                        hasil = nilai1 / nilai2;
+                        console.log(`Hasil Pembagian ${nilai1} / ${nilai2} adalah ${hasil}`);
+                    } else {
+                        console.log("Pembagian dengan 0 tidak dapat dilakukan.");
+                    }
+                    break;
+                case '%':
+                    hasil = nilai1 % nilai2;
+                    console.log(`Hasil Modulus ${nilai1} % ${nilai2} adalah ${hasil}`);
+                    break;
+                default:
+                    console.log("Operasi tidak dikenali.");
+            }
+            return hasil;
+        }
+
+        // Fungsi utama untuk menjalankan program
+        function mulaiProgram() {
+            cetakNama(); 
+            let operasi;
+            while (true) {
+                operasi = prompt("Masukkan Menu (+|-|/|*|%|stop):");
+
+                if (operasi === 'stop') {
+                    console.log("Program Berhenti, Terima Kasih telah menggunakan program saya.");
+                    break;
+                }
+
+                // Meminta input angka jika operasi bukan 'stop'
+                let nilai1 = parseFloat(prompt("Masukkan Nilai 1:"));
+                let nilai2 = parseFloat(prompt("Masukkan Nilai 2:"));
+
+                kalkulasi(nilai1, nilai2, operasi);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Program Kalkulator</h2>
+    <button onclick="mulaiProgram()">Mulai Program</button>
+</body>
+</html>
