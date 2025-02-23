@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi Suhu</title>
+    <script>
+        function konversiSuhu() {
+            // Mendapatkan input suhu dan pilihan konversi
+            var suhu = parseFloat(document.getElementById('suhu').value);
+            var pilihan = document.getElementById('pilihan').value;
+            var hasil;
+
+            // Melakukan konversi berdasarkan pilihan
+            if (pilihan === "CtoF") {
+                // Celcius ke Fahrenheit
+                hasil = (suhu * 9/5) + 32;
+                document.getElementById('hasil').innerHTML = suhu + " °C = " + hasil.toFixed(2) + " °F";
+            } else if (pilihan === "CtoK") {
+                // Celcius ke Kelvin
+                hasil = suhu + 273.15;
+                document.getElementById('hasil').innerHTML = suhu + " °C = " + hasil.toFixed(2) + " K";
+            } else if (pilihan === "FtoC") {
+                // Fahrenheit ke Celcius
+                hasil = (suhu - 32) * 5/9;
+                document.getElementById('hasil').innerHTML = suhu + " °F = " + hasil.toFixed(2) + " °C";
+            } else if (pilihan === "FtoK") {
+                // Fahrenheit ke Kelvin
+                hasil = ((suhu - 32) * 5/9) + 273.15;
+                document.getElementById('hasil').innerHTML = suhu + " °F = " + hasil.toFixed(2) + " K";
+            } else if (pilihan === "KtoC") {
+                // Kelvin ke Celcius
+                hasil = suhu - 273.15;
+                document.getElementById('hasil').innerHTML = suhu + " K = " + hasil.toFixed(2) + " °C";
+            } else if (pilihan === "KtoF") {
+                // Kelvin ke Fahrenheit
+                hasil = ((suhu - 273.15) * 9/5) + 32;
+                document.getElementById('hasil').innerHTML = suhu + " K = " + hasil.toFixed(2) + " °F";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Program Konversi Suhu</h2>
+    <form action="javascript:void(0);">
+        <label for="suhu">Masukkan Suhu:</label>
+        <input type="number" id="suhu" required><br><br>
+
+        <label for="pilihan">Pilih Konversi:</label>
+        <select id="pilihan">
+            <option value="CtoF">Celcius ke Fahrenheit</option>
+            <option value="CtoK">Celcius ke Kelvin</option>
+            <option value="FtoC">Fahrenheit ke Celcius</option>
+            <option value="FtoK">Fahrenheit ke Kelvin</option>
+            <option value="KtoC">Kelvin ke Celcius</option>
+            <option value="KtoF">Kelvin ke Fahrenheit</option>
+        </select><br><br>
+
+        <button type="button" onclick="konversiSuhu()">Konversi</button>
+    </form>
+
+    <p id="hasil"></p>
+
+</body>
+</html>

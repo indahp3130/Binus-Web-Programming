@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menentukan Ganjil atau Genap</title>
+    <script>
+        function cekGanjilGenap() {
+            var angka = parseInt(document.getElementById('angka').value);
+
+            if (angka % 2 === 0) {
+                document.getElementById('hasil').innerHTML = angka + " adalah angka genap.";
+            } else {
+                document.getElementById('hasil').innerHTML = angka + " adalah angka ganjil.";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Program Menentukan Angka Ganjil atau Genap</h2>
+    <form action="javascript:void(0);">
+        <label for="angka">Masukkan angka:</label>
+        <input type="number" id="angka" required><br><br>
+
+        <button type="button" onclick="cekGanjilGenap()">Cek Ganjil/Genap</button>
+    </form>
+
+    <p id="hasil"></p>
+
+</body>
+</html>

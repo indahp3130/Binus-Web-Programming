@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategorisasi Umur</title>
+    <script>
+        function kategoriUmur() {
+            var umur = parseInt(document.getElementById('umur').value);
+
+            if (umur < 0) {
+                document.getElementById('hasil').innerHTML = "Umur tidak bisa negatif!";
+                return;
+            }
+
+            var kategori = "";
+            if (umur >= 0 && umur <= 1) {
+                kategori = "Bayi";
+            } else if (umur >= 2 && umur <= 3) {
+                kategori = "Batita";
+            } else if (umur >= 4 && umur <= 5) {
+                kategori = "Balita";
+            } else if (umur >= 6 && umur <= 12) {
+                kategori = "Anak-Anak";
+            } else if (umur >= 13 && umur <= 17) {
+                kategori = "Remaja";
+            } else if (umur >= 18 && umur <= 21) {
+                kategori = "ABG";
+            } else if (umur >= 22 && umur <= 30) {
+                kategori = "Pra Dewasa";
+            } else if (umur >= 31 && umur <= 50) {
+                kategori = "Dewasa";
+            } else if (umur >= 51 && umur <= 70) {
+                kategori = "Pra Lansia";
+            } else if (umur >= 71) {
+                kategori = "Lansia";
+            }
+
+            document.getElementById('hasil').innerHTML = "Kategori umur: " + kategori;
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Program Kategorisasi Umur</h2>
+    <form action="javascript:void(0);">
+        <label for="umur">Masukkan Umur:</label>
+        <input type="number" id="umur" required><br><br>
+
+        <button type="button" onclick="kategoriUmur()">Cek Kategori Umur</button>
+    </form>
+
+    <p id="hasil"></p>
+
+</body>
+</html>

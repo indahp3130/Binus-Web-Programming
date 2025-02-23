@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menentukan Jenis Segitiga</title>
+    <script>
+        function cekSegitiga() {
+            var a = parseFloat(document.getElementById('sisiA').value);
+            var b = parseFloat(document.getElementById('sisiB').value);
+            var c = parseFloat(document.getElementById('sisiC').value);
+
+            if (a <= 0 || b <= 0 || c <= 0) {
+                document.getElementById('hasil').innerHTML = "Sisi segitiga tidak boleh kurang dari atau sama dengan 0.";
+                return;
+            }
+
+            if (a + b <= c || a + c <= b || b + c <= a) {
+                document.getElementById('hasil').innerHTML = "Bukan Segitiga.";
+                return;
+            }
+
+            var jenisSegitiga = "";
+
+            if (a === b && b === c) {
+                jenisSegitiga = "Segitiga Sama Sisi";
+            }
+            else if (a === b || b === c || a === c) {
+                jenisSegitiga = "Segitiga Sama Kaki";
+            }
+            else if ((a * a + b * b === c * c) || (a * a + c * c === b * b) || (b * b + c * c === a * a)) {
+                jenisSegitiga = "Segitiga Siku-Siku";
+            }
+            else {
+                jenisSegitiga = "Segitiga Sembarang";
+            }
+
+            document.getElementById('hasil').innerHTML = "Jenis Segitiga: " + jenisSegitiga;
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Program Menentukan Jenis Segitiga</h2>
+    <form action="javascript:void(0);">
+        <label for="sisiA">Masukkan Sisi A:</label>
+        <input type="number" id="sisiA" required><br><br>
+
+        <label for="sisiB">Masukkan Sisi B:</label>
+        <input type="number" id="sisiB" required><br><br>
+
+        <label for="sisiC">Masukkan Sisi C:</label>
+        <input type="number" id="sisiC" required><br><br>
+
+        <button type="button" onclick="cekSegitiga()">Cek Jenis Segitiga</button>
+    </form>
+
+    <p id="hasil"></p>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persamaan Kuadrat</title>
+    <script>
+        function hitungAkar() {
+            // Mendapatkan input nilai A, B, dan C
+            var a = parseFloat(document.getElementById('nilaiA').value);
+            var b = parseFloat(document.getElementById('nilaiB').value);
+            var c = parseFloat(document.getElementById('nilaiC').value);
+
+            // Memeriksa jika nilai A = 0, maka itu bukan persamaan kuadrat
+            if (a === 0) {
+                document.getElementById('hasil').innerHTML = "Bukan merupakan akar persamaan kuadrat.";
+                return;
+            }
+            
+            var diskriminan = b * b - 4 * a * c;
+            var hasil = "";
+
+            var persamaan = a + "x² + " + b + "x + " + c;
+
+            if (diskriminan > 0) {
+                var x1 = (-b + Math.sqrt(diskriminan)) / (2 * a);
+                var x2 = (-b - Math.sqrt(diskriminan)) / (2 * a);
+                hasil = "Merupakan Akar Berbeda<br>";
+                hasil += "Persamaan Kuadrat: " + persamaan + "<br>";
+                hasil += "Diskriminan: " + diskriminan + "<br>";
+                hasil += "Akar x1: " + x1.toFixed(2) + "<br>";
+                hasil += "Akar x2: " + x2.toFixed(2) + "<br>";
+            } else if (diskriminan === 0) {
+                var akarKembar = -b / (2 * a);
+                hasil = "Merupakan Akar Kembar<br>";
+                hasil += "Persamaan Kuadrat: " + persamaan + "<br>";
+                hasil += "Diskriminan: " + diskriminan + "<br>";
+                hasil += "Akar: " + akarKembar.toFixed(2) + "<br>";
+            } else {
+                var akarImajiner1 = (-b + Math.sqrt(-diskriminan) + "i") / (2 * a);
+                var akarImajiner2 = (-b - Math.sqrt(-diskriminan) + "i") / (2 * a);
+                hasil = "Merupakan Akar Imajiner<br>";
+                hasil += "Persamaan Kuadrat: " + persamaan + "<br>";
+                hasil += "Diskriminan: " + diskriminan + "<br>";
+                hasil += "Akar x1: " + akarImajiner1 + "<br>";
+                hasil += "Akar x2: " + akarImajiner2 + "<br>";
+            }
+
+            document.getElementById('hasil').innerHTML = hasil;
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Program Menentukan Akar Persamaan Kuadrat</h2>
+    <form action="javascript:void(0);">
+        <label for="nilaiA">Masukkan Nilai A:</label>
+        <input type="number" id="nilaiA" required><br><br>
+
+        <label for="nilaiB">Masukkan Nilai B:</label>
+        <input type="number" id="nilaiB" required><br><br>
+
+        <label for="nilaiC">Masukkan Nilai C:</label>
+        <input type="number" id="nilaiC" required><br><br>
+
+        <button type="button" onclick="hitungAkar()">Hitung Akar</button>
+    </form>
+
+    <p id="hasil"></p>
+
+</body>
+</html>
