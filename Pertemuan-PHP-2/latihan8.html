@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Volume Tabung</title>
+    <script>
+        function hitungVolumeTabung() {
+            var jariJari = parseFloat(document.getElementById('jariJari').value);
+            var tinggi = parseFloat(document.getElementById('tinggi').value);
+
+            var volume = Math.PI * Math.pow(jariJari, 2) * tinggi;
+
+            document.getElementById('hasil').innerHTML = "Volume Tabung: " + volume.toFixed(3) + " meter kubik";
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Program Hitung Volume Tabung</h2>
+    <form action="javascript:void(0);">
+        <label for="jariJari">Jari-Jari Alas Tabung (meter):</label>
+        <input type="number" id="jariJari" required><br><br>
+
+        <label for="tinggi">Tinggi Tabung (meter):</label>
+        <input type="number" id="tinggi" required><br><br>
+
+        <button type="button" onclick="hitungVolumeTabung()">Hitung Volume</button>
+    </form>
+
+    <p id="hasil"></p>
+
+</body>
+</html>

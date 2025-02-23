@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Jarak antara Dua Titik</title>
+    <script>
+        function hitungJarak() {
+            var latA = parseFloat(document.getElementById('latA').value);
+            var lonA = parseFloat(document.getElementById('lonA').value);
+            var latB = parseFloat(document.getElementById('latB').value);
+            var lonB = parseFloat(document.getElementById('lonB').value);
+
+            var radian = Math.PI / 180;
+
+            var deltaLat = (latB - latA) * radian;
+            var deltaLon = (lonB - lonA) * radian;
+
+            var latA_rad = latA * radian;
+            var latB_rad = latB * radian;
+
+            var a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+                    Math.cos(latA_rad) * Math.cos(latB_rad) * 
+                    Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            var R = 6371;
+
+            var jarak = R * c;
+
+            document.getElementById('hasil').innerHTML = "Jarak antara Titik A dan Titik B: " + jarak.toFixed(2) + " km";
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Program Hitung Jarak antara Dua Titik pada Permukaan Bumi</h2>
+    <form action="javascript:void(0);">
+        <label for="latA">Latitude Titik A:</label>
+        <input type="number" id="latA" required><br><br>
+
+        <label for="lonA">Longitude Titik A:</label>
+        <input type="number" id="lonA" required><br><br>
+
+        <label for="latB">Latitude Titik B:</label>
+        <input type="number" id="latB" required><br><br>
+
+        <label for="lonB">Longitude Titik B:</label>
+        <input type="number" id="lonB" required><br><br>
+
+        <button type="button" onclick="hitungJarak()">Hitung Jarak</button>
+    </form>
+
+    <p id="hasil"></p>
+
+</body>
+</html>
