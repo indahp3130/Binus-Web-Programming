@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rata-rata Nilai</title>
+    <script>
+        function hitungRataRata() {
+            var nilaiHuruf = {
+                'A': 4.00,
+                'A-': 3.75,
+                'B+': 3.50,
+                'B': 3.00,
+                'B-': 2.75,
+                'C+': 2.50,
+                'C': 2.00,
+                'C-': 1.75,
+                'D': 1.50,
+                'E': 1.20
+            };
+            
+            var totalNilai = 0;
+            var jumlahNilai = 0;
+            var nilai;
+
+            while (true) {
+                nilai = prompt("Masukkan Kategori Nilai (Tekan Enter Untuk Berhenti):");
+                
+                if (nilai === "") {
+                    break;
+                }
+
+                if (nilaiHuruf[nilai] !== undefined) {
+                    totalNilai += nilaiHuruf[nilai];
+                    jumlahNilai++;
+                } else {
+                    alert("Kategori nilai tidak valid. Coba lagi.");
+                }
+            }
+
+            if (jumlahNilai > 0) {
+                var rataRata = totalNilai / jumlahNilai;
+                var predikat = "";
+
+                if (rataRata >= 3.75) {
+                    predikat = "A";
+                } else if (rataRata >= 3.50) {
+                    predikat = "A-";
+                } else if (rataRata >= 3.00) {
+                    predikat = "B+";
+                } else if (rataRata >= 2.75) {
+                    predikat = "B";
+                } else if (rataRata >= 2.50) {
+                    predikat = "B-";
+                } else if (rataRata >= 2.00) {
+                    predikat = "C+";
+                } else if (rataRata >= 1.75) {
+                    predikat = "C";
+                } else if (rataRata >= 1.50) {
+                    predikat = "C-";
+                } else if (rataRata >= 1.20) {
+                    predikat = "D";
+                } else {
+                    predikat = "E";
+                }
+
+                alert("Rata-rata nilainya adalah " + rataRata.toFixed(2) + " dengan Predikat " + predikat);
+            } else {
+                alert("Tidak ada nilai yang dimasukkan.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Program Rata-rata Nilai</h2>
+    <button onclick="hitungRataRata()">Hitung Rata-rata Nilai</button>
+</body>
+</html>
