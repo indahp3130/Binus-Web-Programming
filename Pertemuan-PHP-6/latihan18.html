@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Operasi Matematika</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .menu {
+            background-color: #dcdcdc;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .menu button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .menu button:hover {
+            background-color: #45a049;
+        }
+        .output {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .output p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>===== Program OOP =====</h1>
+
+<div class="menu">
+    <button onclick="pilihMenu(1)">1. Mendeklarasikan Objek</button>
+    <button onclick="pilihMenu(2)">2. Menampilkan Objek</button>
+    <button onclick="pilihMenu(3)">3. Merubah Nilai Objek</button>
+    <button onclick="pilihMenu(4)">4. Menghapus Objek</button>
+    <button onclick="pilihMenu(5)">5. Keluar Dari Program</button>
+</div>
+
+<div class="output" id="output">
+    <p>Selamat datang! Pilih menu untuk memulai.</p>
+</div>
+
+<script>
+    class Calculator {
+        constructor() {
+            this._nama = "None";
+            this._nilai = 0;
+        }
+
+        get nama() {
+            return this._nama;
+        }
+
+        set nama(namaBaru) {
+            this._nama = namaBaru;
+        }
+
+        get nilai() {
+            return this._nilai;
+        }
+
+        set nilai(nilaiBaru) {
+            if (isNaN(nilaiBaru)) {
+                alert("Nilai yang dimasukkan bukan angka, silakan masukkan angka.");
+            } else {
+                this._nilai = nilaiBaru;
+            }
+        }
+
+        tampilkanData() {
+            return `Nama: ${this._nama} \nNilai: ${this._nilai}`;
+        }
+
+        ubahData(namaBaru, nilaiBaru) {
+            this._nama = namaBaru;
+            this.nilai = nilaiBaru;  
+        }
+
+        hapusData() {
+            this._nama = "None";
+            this._nilai = 0;
+        }
+
+        operasiMatematika(operasi) {
+            let hasil;
+            let input2 = prompt("Masukkan angka kedua untuk operasi:");
+
+            if (isNaN(input2)) {
+                return "Input kedua bukan angka, operasi dibatalkan.";
+            }
+            const angkaKedua = parseFloat(input2);
+
+            switch (operasi) {
+                case "tambah":
+                    hasil = this._nilai + angkaKedua;
+                    break;
+                case "kurang":
+                    hasil = this._nilai - angkaKedua;
+                    break;
+                case "kali":
+                    hasil = this._nilai * angkaKedua;
+                    break;
+                case "bagi":
+                    if (angkaKedua === 0) {
+                        return "Tidak bisa dibagi dengan nol.";
+                    }
+                    hasil = this._nilai / angkaKedua;
+                    break;
+                default:
+                    return "Operasi tidak valid.";
+            }
+
+            return `Hasil dari operasi ${operasi} adalah: ${hasil}`;
+        }
+    }
+
+    const calculator = new Calculator();
+    const outputDiv = document.getElementById("output");
+
+    function pilihMenu(pilihan) {
+        let result = "";
+        switch (pilihan) {
+            case 1:
+                const nama = prompt("Masukkan Namamu:");
+                const nilai = prompt("Masukkan Nilaimu:");
+                calculator.ubahData(nama, nilai);
+                result = "Data Berhasil Ditambahkan";
+                break;
+            case 2:
+                result = calculator.tampilkanData();
+                break;
+            case 3:
+                const newNama = prompt("Masukkan Nama Baru:");
+                const newNilai = prompt("Masukkan Nilai Baru:");
+                calculator.ubahData(newNama, newNilai);
+                result = "Data Berhasil Diubah";
+                break;
+            case 4:
+                calculator.hapusData();
+                result = "Data Berhasil Dihapus";
+                break;
+            case 5:
+                result = "Keluar dari Program";
+                break;
+            default:
+                result = "Pilihan tidak valid. Silakan pilih antara 1-5.";
+        }
+
+        // Menampilkan hasil operasi matematika
+        if (pilihan === 2) {
+            let operasi = prompt("Pilih operasi matematika: tambah, kurang, kali, bagi");
+            const operasiHasil = calculator.operasiMatematika(operasi);
+            result += `\n${operasiHasil}`;
+        }
+
+        outputDiv.innerHTML = `<p>${result}</p>`;
+    }
+</script>
+
+</body>
+</html>

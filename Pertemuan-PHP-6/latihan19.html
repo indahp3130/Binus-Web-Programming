@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Mahasiswa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .output-container {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>===== Biodata Mahasiswa =====</h1>
+
+<div class="form-container">
+    <label for="nama">Nama:</label>
+    <input type="text" id="nama" placeholder="Masukkan Nama">
+    
+    <label for="nim">NIM:</label>
+    <input type="text" id="nim" placeholder="Masukkan NIM">
+    
+    <label for="jurusan">Jurusan:</label>
+    <input type="text" id="jurusan" placeholder="Masukkan Jurusan">
+    
+    <button onclick="tampilkanBiodata()">Tampilkan Biodata</button>
+</div>
+
+<div class="output-container" id="outputContainer">
+    <h2>Biodata Mahasiswa</h2>
+    <p><strong>Nama:</strong> <span id="outputNama"></span></p>
+    <p><strong>NIM:</strong> <span id="outputNIM"></span></p>
+    <p><strong>Jurusan:</strong> <span id="outputJurusan"></span></p>
+</div>
+
+<script>
+    class Mahasiswa {
+        constructor(nama, nim, jurusan) {
+            this.nama = nama;
+            this.nim = nim;
+            this.jurusan = jurusan;
+        }
+
+        tampilkanBiodata() {
+            return `Nama: ${this.nama}\nNIM: ${this.nim}\nJurusan: ${this.jurusan}`;
+        }
+    }
+
+    // Fungsi untuk menampilkan biodata mahasiswa berdasarkan input
+    function tampilkanBiodata() {
+        const nama = document.getElementById("nama").value;
+        const nim = document.getElementById("nim").value;
+        const jurusan = document.getElementById("jurusan").value;
+
+        if (nama === "" || nim === "" || jurusan === "") {
+            alert("Harap lengkapi semua data!");
+            return;
+        }
+
+        const mahasiswa = new Mahasiswa(nama, nim, jurusan);
+
+        document.getElementById("outputNama").textContent = mahasiswa.nama;
+        document.getElementById("outputNIM").textContent = mahasiswa.nim;
+        document.getElementById("outputJurusan").textContent = mahasiswa.jurusan;
+
+        document.getElementById("outputContainer").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
