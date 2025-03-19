@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #333;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login System</h2>
+    <div class="input-group">
+        <label for="username">Enter Email/Username:</label>
+        <input type="text" id="username" placeholder="Email or Username">
+    </div>
+    <div class="input-group">
+        <label for="password">Enter Password:</label>
+        <input type="password" id="password" placeholder="Password">
+    </div>
+    <button class="button" onclick="login()">Login</button>
+    <div id="message" class="message"></div>
+</div>
+
+<script>
+class LoginSystem {
+    constructor() {
+        this.users = [
+            { email: "test", password: "gagal" },
+            { email: "Moderator", password: "momod" },
+            { email: "admin", password: "admin123" },
+            { email: "user1", password: "password1" },
+            { email: "user2", password: "password2" },
+            { email: "indah", password: "indah123" },
+            { email: "alice_smith", password: "alice123" },
+            { email: "budi", password: "budi123" },
+            { email: "akbar", password: "akbar123" },
+            { email: "david", password: "david123" }
+        ];
+    }
+
+    validateCredentials(inputUsername, inputPassword) {
+        for (let user of this.users) {
+            if (user.email === inputUsername && user.password === inputPassword) {
+                return true; 
+            }
+        }
+        return false; 
+    }
+}
+
+const loginSystem = new LoginSystem();
+
+function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if (username === "" || password === "") {
+        displayMessage("Please enter both username/email and password.", "error");
+        return;
+    }
+
+    const isValid = loginSystem.validateCredentials(username, password);
+
+    if (isValid) {
+        displayMessage("Login Successful", "success");
+    } else {
+        displayMessage("Email/Username or Password Wrong, Please try again", "error");
+    }
+}
+
+function displayMessage(message, type) {
+    const messageContainer = document.getElementById("message");
+    messageContainer.textContent = message;
+    messageContainer.className = `message ${type}`;
+}
+</script>
+
+</body>
+</html>
